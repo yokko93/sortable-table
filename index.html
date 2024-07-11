@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vite + TS</title>
+    <link rel="stylesheet" href="/src/style.css" type="text/css">
+  </head>
+  <body>
+    <div id="app">
+      <table id="table" class="sortable-table">
+
+      </table>
+    </div>
+    <script type="module">
+      import SortableTable from '/src/sortable-table.ts';
+
+      const table = new SortableTable('#table');
+
+      const header = [
+        {
+          id: 'id',
+          label: '#',
+          sortable: false,
+        },
+        {
+          id: 'name',
+          label: 'Name',
+          sortable: true,
+        },
+        {
+          id: 'price',
+          label: 'Price($)',
+          sortable: true,
+        },
+        {
+          id: 'weight',
+          label: 'weight(carat)',
+          sortable: true,
+        },
+      ];
+      table.setHeader(header);
+
+      const data = [
+        {
+          id: {
+            value: 0,
+          },
+          name: {
+            value: 'Diamond',
+          },
+          weight: {
+            value: 1.0,
+          },
+          price: {
+            value: '9,000',
+            cellRenderer: (value) => {
+              return `<input type="text" value="${value}" />`;
+            }
+          },
+        },
+        {
+          id: {
+            value: 1,
+          },
+          name: {
+            value: 'Amethyst',
+          },
+          weight: {
+            value: 3.0,
+          },
+          price: {
+            value: '200',
+          },
+        },
+        {
+          id: {
+            value: 2,
+          },
+          name: {
+            value: 'Emerald',
+          },
+          weight: {
+            value: 2.5,
+          },
+          price: {
+            value: '2,500',
+          },
+        },
+        {
+          id: {
+            value: 3,
+          },
+          name: {
+            value: 'Ruby',
+          },
+          weight: {
+            value: 2.0,
+          },
+          price: {
+            value: '2,000',
+          },
+        },
+      ];
+      table.setData(data);
+    </script>
+  </body>
+</html>
